@@ -5,14 +5,16 @@ def main():
     menu = Interface()
     selection = menu.welcome_screen()
 
-    while selection != '4':
+    while True:
         if selection == '1':
             menu.add_task()
         elif selection == '2':
-            menu.view_all_tasks()
+            menu.modify_task('UPDATE')
         elif selection == '3':
-            menu.delete_task()
+            menu.modify_task('DELETE')
         elif selection == '4':
+            menu.modify_task('VIEW')
+        elif selection == '5':
             exit()
         selection = menu.welcome_screen()
 

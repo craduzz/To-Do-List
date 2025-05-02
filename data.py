@@ -5,41 +5,47 @@ class Data:
 
     GREEN = '\033[92m'
 
-    def add_note(self, title, description, expiration):
+    #add tasks in the json
+    def add_task_json(self, title, description, expiration):
         with open("Data/data.json", "r") as f:
             notes = json.load(f)
         notes[title] = {
             "Description": description,
-            "Status": "Created",
+            "Status": "CREATED",
             "Expiration": expiration
         }
-        json_note = json.dumps(notes)
+        json_task = json.dumps(notes)
         with open("Data/data.json", "w") as f:
-            f.write(json_note)
+            f.write(json_task)
 
         print(f"{self.GREEN}Note added successfully!")
         input("Press a key to continue....")
 
-# #Testing
-# d = {
-#     "title3": {
-#         "Description": "something",
-#         "Status": "Created",
-#         "Expiration": "20/12/2025"
-#   }
-# }
-#
-# with open("Data/data.json", "r") as f:
-#     notes = json.load(f)
-#
-# print(notes)
-# #notes.update(d)
-# if "title3" in notes:
-#     notes.pop("title3")
-# else:
-#     print("title3 not on notes")
-#
-# json_note = json.dumps(notes)
-# with open("Data/data.json", "w") as f:
-#     f.write(json_note)
-#
+    #get tasks from the json
+    def get_task_json(self):
+        with open("Data/data.json", "r") as f:
+            notes = json.load(f)
+        return notes
+
+    #delete the selected task from the json and update it
+    def delete_task_json(self, title,tasks):
+
+        tasks.pop(title)
+        json_task = json.dumps(tasks)
+        with open("Data/data.json", "w") as f:
+            f.write(json_task)
+
+        print(f"{self.GREEN}Note deleted successfully!")
+        input("Press a key to continue....")
+
+
+    def update_task_title_json(self, tasks:dict):
+        json_task = json.dumps(tasks)
+        with open("Data/data.json", "w") as f:
+            f.write(json_task)
+
+    def update_task_json(self, title, tasks, new_text, label):
+        tasks[title][label] = new_text
+        json_task = json.dumps(tasks)
+        with open("Data/data.json", "w") as f:
+            f.write(json_task)
