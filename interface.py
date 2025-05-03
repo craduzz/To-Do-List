@@ -124,7 +124,7 @@ class Interface:
 
         if selection not in ['1', '2', '3', '4','5']:
             print(f"{self.RED}Invalid option. Please try again.")
-            self.visualize_tasks(title,tasks)
+            self.visualize_tasks(title,tasks,action)
         else:
             if selection == '1':
                 new_title = self.edit_title()
@@ -151,7 +151,7 @@ class Interface:
                 print(f"{self.RED}ERROR.")
             print(f"{self.GREEN}The task has been updated! \n")
             self.divisor()
-        self.visualize_tasks(title,tasks)
+        self.visualize_tasks(title,tasks,action)
 
     def edit_title(self):
         print(f"{self.BLUE}Enter new title: ")
