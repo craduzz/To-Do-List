@@ -1,10 +1,13 @@
 from interface import Interface
 
-
+# main method
 def main():
     menu = Interface()
+
+    #Displays the main menu
     selection = menu.welcome_screen()
 
+    #Main program loop
     while True:
         if selection == '1':
             menu.add_task()
@@ -21,6 +24,6 @@ def main():
 
 
 
-
+# main function
 if __name__ == "__main__":
     main()

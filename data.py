@@ -1,12 +1,11 @@
 import json
 
-
 class Data:
-
+    #Text colour
     GREEN = '\033[92m'
 
     #add tasks in the json
-    def add_task_json(self, title, description, expiration):
+    def add_task_json(self, title:str, description:str, expiration:str):
         with open("Data/data.json", "r") as f:
             notes = json.load(f)
         notes[title] = {
@@ -28,7 +27,7 @@ class Data:
         return notes
 
     #delete the selected task from the json and update it
-    def delete_task_json(self, title,tasks):
+    def delete_task_json(self, title:str,tasks:dict):
 
         tasks.pop(title)
         json_task = json.dumps(tasks)
@@ -38,13 +37,14 @@ class Data:
         print(f"{self.GREEN}Note deleted successfully!")
         input("Press a key to continue....")
 
-
+    #updates the json with the modified dict
     def update_task_title_json(self, tasks:dict):
         json_task = json.dumps(tasks)
         with open("Data/data.json", "w") as f:
             f.write(json_task)
 
-    def update_task_json(self, title, tasks, new_text, label):
+    #modifies the dict and then it gets modified in the json
+    def update_task_json(self, title:str, tasks:dict, new_text:str, label:str):
         tasks[title][label] = new_text
         json_task = json.dumps(tasks)
         with open("Data/data.json", "w") as f:

@@ -8,8 +8,6 @@ class Interface:
     RED = '\033[91m'
     WHITE = '\033[97m'
     BLUE = '\033[94m'
-    #console clear command
-    #cls = os.system('cls' if os.name == 'nt' else 'clear')
 
     def __init__(self):
         pass
@@ -60,7 +58,7 @@ class Interface:
         return tasks
 
     #delete & update functionality
-    def modify_task(self,action):
+    def modify_task(self,action:str):
         data = Data()
 
         self.divisor()
@@ -90,7 +88,8 @@ class Interface:
                 print(f"{self.RED}ERROR.")
                 return
 
-    def visualize_tasks(self,title,tasks,action):
+    #displays the details of the selected tasks and the selections of the selected action
+    def visualize_tasks(self,title:str,tasks:dict,action:str):
         data = Data()
 
         print(f"{self.BLUE}1.- Title: {self.WHITE}{title}")
@@ -153,21 +152,25 @@ class Interface:
             self.divisor()
         self.visualize_tasks(title,tasks,action)
 
+    #Creates a new key with the same values of the object to modify and deletes the previous one, if the key is the same do nothing
     def edit_title(self):
         print(f"{self.BLUE}Enter new title: ")
         new_title = input()
         return new_title
 
+    #Modifies the description field
     def edit_description(self):
         print(f"{self.BLUE}Enter new description: ")
         new_description = input()
         return new_description
 
+    #Modifies the expiration date field
     def edit_expiration(self):
         print(f"{self.BLUE}Enter new expiration date (Format: DD/MM/YYYY):")
         new_expiration = input()
         return new_expiration
 
+    #Modifies the status with a selection of available statuses for the task
     def edit_status(self):
         label = ''
         print(f"{self.BLUE}Select new status: ")
@@ -191,5 +194,6 @@ class Interface:
 
         return label
 
+    #Simple method for visual console lines to declutter the code
     def divisor(self):
         print(f"{self.BLUE}{"-"*40}")
